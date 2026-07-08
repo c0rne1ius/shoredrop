@@ -1,0 +1,28 @@
+{
+  "snack_pack": {
+    "name": "Snack Pack",
+    "price": "$15",
+    "stripe_price": "price_1TqlFDBS98AOohuKOBD1jmqT",
+    "payment_link": "https://buy.stripe.com/7sYbJ0gNl3a43z770e1sQ02"
+  },
+  "bait_drop": {
+    "name": "Bait Drop",
+    "price": "$25",
+    "payment_link": "https://buy.stripe.com/cNi9AS7cL5ic8Tr70e1sQ03"
+  },
+  "beach_essentials": {
+    "name": "Beach Essentials",
+    "price": "$35",
+    "payment_link": "https://buy.stripe.com/00wdR8cx55ic3z7fwK1sQ04"
+  },
+  "photo_pass": {
+    "name": "Photo Pass",
+    "price": "$40",
+    "payment_link": "https://buy.stripe.com/aFa3cucx5h0U9Xvbgu1sQ05"
+  },
+  "custom_drop": {
+    "name": "Custom Drop",
+    "price": "$50+",
+    "payment_link": "https://buy.stripe.com/5kQ4gy40z8uoedLdoC1sQ06"
+  }
+}
