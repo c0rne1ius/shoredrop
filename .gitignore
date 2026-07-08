@@ -1,0 +1,6 @@
+.env
+node_modules/
+stripe-links.json
+*.log
+.DS_Store
+.vercel/

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Shore Drop — Beach Drone Delivery in New Smyrna Beach, FL. Snacks, bait, sunscreen & aerial photos delivered to the sand in 15–30 min." />
+  <meta property="og:title" content="Shore Drop 🚁 Beach Drone Delivery" />
+  <meta property="og:description" content="Snacks, bait, sunscreen & aerial photos delivered to the sand. New Smyrna Beach, FL." />
+  <meta property="og:type" content="website" />
+  <title>Shore Drop 🚁 Beach Drone Delivery — New Smyrna Beach, FL</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ocean:   #0077b6;
+      --sky:     #00b4d8;
+      --sand:    #f9c74f;
+      --coral:   #f3722c;
+      --white:   #ffffff;
+      --dark:    #023e8a;
+      --text:    #1a1a2e;
+      --muted:   #6b7280;
+      --card-bg: #ffffff;
+      --bg:      #f0f9ff;
+      --radius:  16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(160deg, var(--dark) 0%, var(--ocean) 50%, var(--sky) 100%);
+      color: var(--white);
+      padding: 60px 20px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: var(--bg);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+
+    .logo-emoji {
+      font-size: 3.5rem;
+      display: block;
+      margin-bottom: 12px;
+      animation: hover 3s ease-in-out infinite;
+    }
+
+    @keyframes hover {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .hero .tagline {
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      opacity: 0.9;
+      margin-bottom: 6px;
+    }
+
+    .hero .location {
+      font-size: 0.95rem;
+      opacity: 0.75;
+      margin-bottom: 28px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+
+    .badge {
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: var(--sand);
+      color: var(--text);
+      padding: 16px 36px;
+      border-radius: 999px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+
+    /* ── How It Works ── */
+    .section { padding: 60px 20px; max-width: 900px; margin: 0 auto; }
+    .section-title {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 40px;
+      color: var(--dark);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+    }
+
+    .step {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: 0 2px 16px rgba(0,119,182,0.08);
+      border: 1px solid rgba(0,180,216,0.12);
+    }
+
+    .step-num {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--ocean), var(--sky));
+      color: #fff;
+      font-weight: 900;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+    }
+
+    .step h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; color: var(--dark); }
+    .step p  { font-size: 0.85rem; color: var(--muted); }
+
+    /* ── Products ── */
+    .products-bg {
+      background: linear-gradient(180deg, var(--bg) 0%, #e0f2fe 100%);
+      padding: 20px 0 60px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,119,182,0.1);
+      border: 1px solid rgba(0,180,216,0.15);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover { transform: translateY(-4px); box-shadow: 0 10px 32px rgba(0,119,182,0.18); }
+
+    .card-header {
+      background: linear-gradient(135deg, var(--ocean), var(--sky));
+      padding: 24px 20px 20px;
+      color: white;
+      text-align: center;
+    }
+
+    .card-emoji { font-size: 2.4rem; display: block; margin-bottom: 8px; }
+    .card-name { font-size: 1.15rem; font-weight: 800; }
+    .card-price {
+      font-size: 2rem;
+      font-weight: 900;
+      margin-top: 4px;
+      color: var(--sand);
+    }
+
+    .card-body { padding: 20px; flex: 1; }
+    .card-desc { font-size: 0.9rem; color: var(--muted); margin-bottom: 16px; line-height: 1.55; }
+
+    .card-items {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    .card-items li {
+      font-size: 0.85rem;
+      padding: 3px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text);
+    }
+
+    .card-items li::before {
+      content: "✓";
+      color: var(--ocean);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .btn-order {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, var(--ocean), var(--dark));
+      color: white;
+      text-align: center;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: opacity 0.15s, transform 0.15s;
+      margin-top: auto;
+    }
+
+    .btn-order:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .card.custom .card-header {
+      background: linear-gradient(135deg, var(--coral), #f77f00);
+    }
+
+    /* ── ETA Strip ── */
+    .eta-strip {
+      background: linear-gradient(90deg, var(--dark), var(--ocean));
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .eta-strip span { opacity: 0.8; font-weight: 400; margin-left: 8px; }
+
+    /* ── Drop Zones ── */
+    .dropzone-section { background: white; }
+
+    .dropzones {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .dz {
+      background: var(--bg);
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid rgba(0,119,182,0.12);
+    }
+
+    .dz-id {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--ocean);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .dz-name { font-size: 0.95rem; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+    .dz-desc { font-size: 0.82rem; color: var(--muted); }
+
+    .dz-note {
+      margin-top: 28px;
+      background: #fef9c3;
+      border: 1px solid #fde047;
+      border-radius: 10px;
+      padding: 16px;
+      font-size: 0.9rem;
+      color: #78350f;
+    }
+
+    /* ── FAQ ── */
+    .faq-list { max-width: 680px; margin: 0 auto; }
+
+    details {
+      background: white;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(0,119,182,0.1);
+      overflow: hidden;
+    }
+
+    summary {
+      padding: 18px 20px;
+      font-weight: 700;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.95rem;
+      color: var(--dark);
+    }
+
+    summary::after { content: "＋"; font-size: 1.2rem; color: var(--ocean); flex-shrink: 0; }
+    details[open] summary::after { content: "－"; }
+
+    details p {
+      padding: 0 20px 18px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.85rem;
+    }
+
+    footer strong { color: white; }
+    footer a { color: var(--sky); text-decoration: none; }
+    footer .footer-logo { font-size: 1.8rem; margin-bottom: 12px; display: block; }
+
+    /* ── Mobile Polish ── */
+    @media (max-width: 480px) {
+      .hero { padding: 48px 16px 68px; }
+      .section { padding: 48px 16px; }
+      .products { padding: 0 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<section class="hero">
+  <span class="logo-emoji">🚁</span>
+  <h1>Shore Drop</h1>
+  <p class="tagline">Beach Drone Delivery — to the sand, not the parking lot.</p>
+  <p class="location">📍 New Smyrna Beach, Florida</p>
+
+  <div class="hero-badges">
+    <span class="badge">⚡ 15–30 min delivery</span>
+    <span class="badge">🎣 Bait drops for fishermen</span>
+    <span class="badge">📸 Aerial photo sessions</span>
+    <span class="badge">🏖️ Direct-to-beach-chair</span>
+  </div>
+
+  <a href="#order" class="hero-cta">Order Now →</a>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     HOW IT WORKS
+═══════════════════════════════════════════ -->
+<section class="section">
+  <h2 class="section-title">How It Works</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Pick your drop</h3>
+      <p>Choose a package below and hit "Order Now"</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Enter your drop zone</h3>
+      <p>Tell us your nearest landmark (lifeguard tower, pier, mile marker)</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Pay securely</h3>
+      <p>Checkout in seconds via Stripe — card or Apple Pay</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Watch it land</h3>
+      <p>Your drone arrives in 15–30 min. We'll text when it's en route 🚁</p>
+    </div>
+  </div>
+</section>
+
+<!-- ETA Strip -->
+<div class="eta-strip">
+  🚁 Estimated delivery: <strong>15–30 minutes</strong><span>depending on your location along the beach</span>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PRODUCTS
+═══════════════════════════════════════════ -->
+<div class="products-bg" id="order">
+  <section class="section" style="padding-top: 60px;">
+    <h2 class="section-title">Choose Your Drop</h2>
+  </section>
+
+  <div class="products">
+
+    <!-- Snack Pack -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-emoji">🍟</span>
+        <div class="card-name">Snack Pack</div>
+        <div class="card-price">$15</div>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">The essentials for a great beach day — no sunburn, no hunger, no problem.</p>
+        <ul class="card-items">
+          <li>Chips + snack bar</li>
+          <li>Cold drinks (2×)</li>
+          <li>SPF 30 sunscreen</li>
+        </ul>
+        <a class="btn-order" href="STRIPE_SNACK_PACK_LINK" target="_blank" rel="noopener">
+          🛒 Order Snack Pack — $15
+        </a>
+      </div>
+    </div>
+
+    <!-- Bait Drop -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-emoji">🎣</span>
+        <div class="card-name">Bait Drop</div>
+        <div class="card-price">$25</div>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">Stay in the water. Fresh bait delivered straight to your spot on the beach.</p>
+        <ul class="card-items">
+          <li>Live or cut bait</li>
+          <li>Ice pack to keep it fresh</li>
+          <li>Dropped within feet of your rod</li>
+        </ul>
+        <a class="btn-order" href="STRIPE_BAIT_DROP_LINK" target="_blank" rel="noopener">
+          🛒 Order Bait Drop — $25
+        </a>
+      </div>
+    </div>
+
+    <!-- Beach Essentials -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-emoji">🏖️</span>
+        <div class="card-name">Beach Essentials</div>
+        <div class="card-price">$35</div>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">Everything you forgot at the car, delivered in minutes.</p>
+        <ul class="card-items">
+          <li>Beach towel</li>
+          <li>Sunscreen SPF 50</li>
+          <li>Water bottles × 4</li>
+        </ul>
+        <a class="btn-order" href="STRIPE_BEACH_ESSENTIALS_LINK" target="_blank" rel="noopener">
+          🛒 Order Beach Essentials — $35
+        </a>
+      </div>
+    </div>
+
+    <!-- Photo Pass -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-emoji">📸</span>
+        <div class="card-name">Photo Pass</div>
+        <div class="card-price">$40</div>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">Get stunning aerial shots of your group from the sky. 5 professional photos delivered to your phone.</p>
+        <ul class="card-items">
+          <li>Drone aerial photo session</li>
+          <li>5 high-res edited shots</li>
+          <li>Photos texted to you in minutes</li>
+        </ul>
+        <a class="btn-order" href="STRIPE_PHOTO_PASS_LINK" target="_blank" rel="noopener">
+          🛒 Book Photo Pass — $40
+        </a>
+      </div>
+    </div>
+
+    <!-- Custom Drop -->
+    <div class="card custom">
+      <div class="card-header">
+        <span class="card-emoji">📦</span>
+        <div class="card-name">Custom Drop</div>
+        <div class="card-price">$50+</div>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">Need something specific? Tell us what you need and we'll make it happen. More items = slightly more time.</p>
+        <ul class="card-items">
+          <li>You specify the items</li>
+          <li>We source &amp; deliver</li>
+          <li>Price quoted per order</li>
+        </ul>
+        <a class="btn-order" href="STRIPE_CUSTOM_DROP_LINK" target="_blank" rel="noopener">
+          🛒 Request Custom Drop — $50+
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     DROP ZONES
+═══════════════════════════════════════════ -->
+<section class="section dropzone-section" id="dropzones">
+  <h2 class="section-title">📍 Drop Zones</h2>
+  <p style="text-align:center; color:var(--muted); margin-bottom:32px; font-size:0.95rem;">
+    We deliver to beach access points along NSB. When you order, pick the drop zone nearest you.
+    Walk over when you get our "it's landing!" text — takes about 30 seconds.
+  </p>
+
+  <div class="dropzones">
+    <div class="dz">
+      <div class="dz-id">DZ-1</div>
+      <div class="dz-name">Flagler Ave Boardwalk</div>
+      <div class="dz-desc">231 Flagler Ave — main beach access, lifeguard tower nearby</div>
+    </div>
+    <div class="dz">
+      <div class="dz-id">DZ-2</div>
+      <div class="dz-name">27th Ave South</div>
+      <div class="dz-desc">South beach access at lifeguard station</div>
+    </div>
+    <div class="dz">
+      <div class="dz-id">DZ-3</div>
+      <div class="dz-name">16th Ave North</div>
+      <div class="dz-desc">Wide public boardwalk access, good parking nearby</div>
+    </div>
+    <div class="dz">
+      <div class="dz-id">DZ-4</div>
+      <div class="dz-name">Klondike Beach</div>
+      <div class="dz-desc">Canaveral Seashore north access — unguarded, great fishing</div>
+    </div>
+    <div class="dz">
+      <div class="dz-id">DZ-5</div>
+      <div class="dz-name">NSB Inlet</div>
+      <div class="dz-desc">Inlet District — fishing pier access</div>
+    </div>
+    <div class="dz">
+      <div class="dz-id">DZ-6</div>
+      <div class="dz-name">Smyrna Dunes Park</div>
+      <div class="dz-desc">2995 N Causeway Dr — dog beach boardwalk</div>
+    </div>
+  </div>
+
+  <div class="dz-note">
+    💡 <strong>Not sure of your exact spot?</strong> Just drop a GPS pin or describe your location in the order notes —
+    e.g. "red umbrella near the lifeguard at 5th St" — and we'll find you.
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FAQ
+═══════════════════════════════════════════ -->
+<section class="section" style="background: var(--bg);">
+  <h2 class="section-title">Questions?</h2>
+  <div class="faq-list">
+
+    <details>
+      <summary>How long does delivery actually take?</summary>
+      <p>15–30 minutes from the moment your payment clears, depending on how far you are from our launch point at 6350 Turtlemound Rd. Flagler Ave drop zones are typically 15 min. Klondike and Smyrna Dunes are closer to 25–30 min. We'll text you an ETA once your order is confirmed.</p>
+    </details>
+
+    <details>
+      <summary>Do I need to stand in a specific spot?</summary>
+      <p>Nope! Just be near your chosen drop zone when we text you "it's landing!" The drone lands briefly at the boardwalk or access point — you pick up the package (usually a 30-second walk) and we're gone. No awkward hovering over strangers.</p>
+    </details>
+
+    <details>
+      <summary>Is this for real? Is it legal?</summary>
+      <p>100% real. Shore Drop operates under FAA Part 107 Remote Pilot certification. Under Florida F.S. 330.41, the FAA — not local governments — regulates drone delivery operations. We're the first commercial beach drone delivery service on the Volusia County coast.</p>
+    </details>
+
+    <details>
+      <summary>What if the weather is bad?</summary>
+      <p>Florida afternoons happen. If a storm rolls in after your order, we'll refund you immediately — no questions asked. We monitor NWS Daytona Beach radar constantly. The SwellPro drone handles wind up to 38 mph, so light chop is no problem; lightning grounds us.</p>
+    </details>
+
+    <details>
+      <summary>What payment methods do you accept?</summary>
+      <p>We use Stripe for secure checkout. Credit/debit cards (Visa, Mastercard, Amex, Discover), Apple Pay, and Google Pay all work. Tap "Order Now" to go straight to a secure payment page — your card info never touches our servers.</p>
+    </details>
+
+    <details>
+      <summary>Can I get alcohol delivered?</summary>
+      <p>Not yet — we're working on our Florida alcohol beverage license. Coming in 2027. For now: everything else you need for a great day at the beach!</p>
+    </details>
+
+    <details>
+      <summary>What's your phone number / can I text you?</summary>
+      <p>Yes! After placing your order you'll get a text from our ops line. You can reply to that with any questions or last-minute instructions. Pre-launch questions: <a href="mailto:mistertichenor@gmail.com">mistertichenor@gmail.com</a></p>
+    </details>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer>
+  <span class="footer-logo">🚁</span>
+  <p><strong>Shore Drop, LLC</strong></p>
+  <p>6350 Turtlemound Rd · New Smyrna Beach, FL 32169</p>
+  <p style="margin-top: 8px;">
+    <a href="mailto:mistertichenor@gmail.com">mistertichenor@gmail.com</a>
+  </p>
+  <p style="margin-top: 20px; opacity: 0.5; font-size: 0.78rem;">
+    FAA Part 107 Certified · Insured Commercial Drone Operations · Florida F.S. 330.41 Compliant
+  </p>
+  <p style="margin-top: 6px; opacity: 0.4; font-size: 0.75rem;">© 2026 Shore Drop, LLC. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

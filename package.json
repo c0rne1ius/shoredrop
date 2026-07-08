@@ -1,0 +1,14 @@
+{
+  "name": "shoredrop",
+  "version": "1.0.0",
+  "description": "Shore Drop — Beach Drone Delivery, New Smyrna Beach FL",
+  "private": true,
+  "scripts": {
+    "webhook": "node webhook-handler/server.js",
+    "stripe-setup": "node stripe-setup.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": ["beach", "drone", "delivery", "new-smyrna-beach", "florida"]
+}
