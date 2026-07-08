@@ -16,6 +16,7 @@ const crypto = require('crypto');
 const https = require('https');
 
 const NOTIFICATION_EMAIL = 'mistertichenor@gmail.com';
+const RESEND_API_KEY = process.env.RESEND_API_KEY;
 
 function verifyStripeSignature(payload, sigHeader, secret) {
   try {
@@ -31,21 +32,23 @@ function verifyStripeSignature(payload, sigHeader, secret) {
 }
 
 function sendEmail({ to, subject, text, html }) {
-  const key = process.env.SENDGRID_API_KEY;
+  const key = RESEND_API_KEY;
   if (!key) {
-    console.log('Email (no key):', subject, text);
+    console.log('Email (no Resend key):', subject);
+    console.log(text);
     return Promise.resolve();
   }
   return new Promise((resolve, reject) => {
     const payload = JSON.stringify({
-      personalizations: [{ to: [{ email: to }] }],
-      from: { email: 'orders@shoredrop.delivery', name: 'Shore Drop' },
+      from: 'Shore Drop Orders <onboarding@resend.dev>',
+      to: [to],
       subject,
-      content: [{ type: 'text/plain', value: text }, { type: 'text/html', value: html }],
+      text,
+      html,
     });
     const req = https.request({
-      hostname: 'api.sendgrid.com',
-      path: '/v3/mail/send',
+      hostname: 'api.resend.com',
+      path: '/emails',
       method: 'POST',
       headers: {
         Authorization: `Bearer ${key}`,
@@ -53,8 +56,12 @@ function sendEmail({ to, subject, text, html }) {
         'Content-Length': Buffer.byteLength(payload),
       },
     }, (res) => {
-      res.on('data', () => {});
-      res.on('end', () => res.statusCode < 300 ? resolve() : reject(new Error(res.statusCode)));
+      let body = '';
+      res.on('data', c => body += c);
+      res.on('end', () => {
+        if (res.statusCode < 300) resolve(JSON.parse(body));
+        else reject(new Error(`Resend ${res.statusCode}: ${body}`));
+      });
     });
     req.on('error', reject);
     req.write(payload);
